@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Southeast Motors Portal - Demo</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Roboto, 'Segoe UI', Arial; padding: 2rem; }
+      .card { padding: 1rem; border: 1px solid #ddd; border-radius: 8px; max-width: 600px; }
+    </style>
+  </head>
+  <body>
+    <h1>Southeast Motors Portal (Demo)</h1>
+    <div class="card">
+      <p id="health">Checking backend...</p>
+    </div>
+
+    <script>
+      fetch('/api/health')
+        .then(r => r.json())
+        .then(j => {
+          document.getElementById('health').textContent = `Backend status: ${j.status} — ${j.now}`;
+        })
+        .catch(err => {
+          document.getElementById('health').textContent = 'Could not reach backend';
+        });
+    </script>
+  </body>
+</html>
